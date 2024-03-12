@@ -15,6 +15,8 @@
 		6C94238B2BA0832F00592B6B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C94238A2BA0832F00592B6B /* MainViewController.swift */; };
 		6C94238D2BA0835000592B6B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C94238C2BA0835000592B6B /* MainView.swift */; };
 		6C9423902BA0876000592B6B /* UIViewController+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C94238F2BA0876000592B6B /* UIViewController+Preview.swift */; };
+		6C9423922BA0AC9400592B6B /* ButtonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9423912BA0AC9400592B6B /* ButtonSize.swift */; };
+		6C9423942BA0ACA100592B6B /* CommonSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9423932BA0ACA100592B6B /* CommonSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		6C94238A2BA0832F00592B6B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6C94238C2BA0835000592B6B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		6C94238F2BA0876000592B6B /* UIViewController+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Preview.swift"; sourceTree = "<group>"; };
+		6C9423912BA0AC9400592B6B /* ButtonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSize.swift; sourceTree = "<group>"; };
+		6C9423932BA0ACA100592B6B /* CommonSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 		6C94237F2BA04E9200592B6B /* Sizes */ = {
 			isa = PBXGroup;
 			children = (
+				6C9423912BA0AC9400592B6B /* ButtonSize.swift */,
+				6C9423932BA0ACA100592B6B /* CommonSize.swift */,
 			);
 			path = Sizes;
 			sourceTree = "<group>";
@@ -246,6 +252,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C9423942BA0ACA100592B6B /* CommonSize.swift in Sources */,
+				6C9423922BA0AC9400592B6B /* ButtonSize.swift in Sources */,
 				6C94238B2BA0832F00592B6B /* MainViewController.swift in Sources */,
 				6C94238D2BA0835000592B6B /* MainView.swift in Sources */,
 				6C9423902BA0876000592B6B /* UIViewController+Preview.swift in Sources */,
