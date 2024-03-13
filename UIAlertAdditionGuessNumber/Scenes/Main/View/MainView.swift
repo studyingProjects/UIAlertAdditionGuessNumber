@@ -10,6 +10,7 @@ import UIKit
 protocol MainViewControllerDelegate: AnyObject {
     func updateFullName(with fullNameGreeting: String)
     func showTheResultOfAddition(result: Float)
+    func showTheGuessResult(_ result: String)
 }
 
 class MainView: UIView {
@@ -68,12 +69,19 @@ class MainView: UIView {
         button.layer.cornerRadius = CommonSize.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
+        button.addTarget(self, action: #selector(guessPressed), for: .touchUpInside)
+
         return button
     }
     // MARK: - Actions
     @objc
     func additionPressed() {
         delegate?.additionPressed()
+    }
+
+    @objc
+    func guessPressed() {
+        delegate?.guessPressed()
     }
 }
 // MARK: - Constraints
@@ -113,6 +121,7 @@ private extension MainView {
 }
 // MARK: - Delegation
 extension MainView: MainViewControllerDelegate {
+
     // Updating logic
     func updateFullName(with fullNameGreeting: String) {
         fullNameLabel.text = fullNameGreeting
@@ -120,6 +129,13 @@ extension MainView: MainViewControllerDelegate {
 
     func showTheResultOfAddition(result: Float) {
         let alert = UIAlertController(title: "The result of addition", message: String(format: "%.0f", result), preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        self.window?.rootViewController?.present(alert, animated: true)
+    }
+
+    func showTheGuessResult(_ result: String) {
+        let alert = UIAlertController(title: "The game result is", message: result, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         self.window?.rootViewController?.present(alert, animated: true)

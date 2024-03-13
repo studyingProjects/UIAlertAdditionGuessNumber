@@ -9,11 +9,13 @@ import UIKit
 
 protocol MainViewDelegate: AnyObject {
     func additionPressed()
+    func guessPressed()
 }
 
 class MainViewController: UIViewController {
     private var person: Person?
     private var addition: Addition?
+    private var guess: Guess?
 
     var delegate: MainViewControllerDelegate?
 
@@ -80,7 +82,7 @@ extension MainViewController: MainViewDelegate {
         alert.addTextField {
             $0.placeholder = "Type the second number"
         }
-        let action = UIAlertAction(title: "Addition of two numbers", style: .default) { _ in
+        let action = UIAlertAction(title: "Calculate", style: .default) { _ in
             var firstNumber: Float = 0
             var secondNumber: Float = 0
             if let unwrappedText = alert.textFields?.first?.text,
@@ -99,6 +101,24 @@ extension MainViewController: MainViewDelegate {
 
         alert.addAction(action)
         present(alert, animated: true)
+    }
+
+    func guessPressed() {
+        let alert = UIAlertController(title: "Guess number", message: "Type your number and check the result", preferredStyle: .alert)
+        alert.addTextField {
+            $0.placeholder = "Type the number"
+        }
+        let action = UIAlertAction(title: "Check", style: .default) { _ in
+            var numberString: String = ""
+            if let unwrappedNumber = alert.textFields?.first?.text {
+                numberString = unwrappedNumber
+            }
+            self.guess = Guess()
+            let result = self.guess?.checkNumber(numberString) ?? ""
+            self.delegate?.showTheGuessResult(result)
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
 }
 import SwiftUI
