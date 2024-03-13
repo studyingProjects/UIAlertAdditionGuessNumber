@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainViewControllerDelegate: AnyObject {
+    func updateFullName(with fullName: String)
+}
+
 class MainView: UIView {
     private lazy var fullNameLabel: UILabel = getfullNameLabel()
     private lazy var additionButton: UIButton = getAdditionButton()
@@ -70,7 +74,6 @@ private extension MainView {
                 equalTo: self.safeAreaLayoutGuide.topAnchor,
                 constant: CommonSize.Padding.large
             ),
-            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             fullNameLabel.leadingAnchor.constraint(
                 equalTo: self.leadingAnchor,
                 constant: CommonSize.Padding.large
@@ -96,5 +99,11 @@ private extension MainView {
             guessButton.widthAnchor.constraint(equalToConstant: ButtonSize.Large.width),
             guessButton.heightAnchor.constraint(equalToConstant: ButtonSize.Large.height)
         ])
+    }
+}
+// MARK: - Delegation
+extension MainView: MainViewControllerDelegate {
+    func updateFullName(with fullName: String) {
+        fullNameLabel.text = "Hey, \(fullName)!"
     }
 }
