@@ -53,6 +53,7 @@ class MainView: UIView {
         button.setTitle("Addition", for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.systemMint, for: .highlighted)
         button.layer.cornerRadius = CommonSize.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -65,6 +66,7 @@ class MainView: UIView {
         let button = UIButton(type: .custom)
         button.setTitle("Guess the number", for: .normal)
         button.backgroundColor = .systemBlue
+        button.setTitleColor(.systemMint, for: .highlighted)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = CommonSize.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
