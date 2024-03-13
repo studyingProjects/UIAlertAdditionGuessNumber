@@ -10,7 +10,7 @@ import Foundation
 struct Addition {
     var firstNumber: Float
     var secondNumber: Float
-    
+
     func calculate() -> Float {
         self.firstNumber + secondNumber
     }

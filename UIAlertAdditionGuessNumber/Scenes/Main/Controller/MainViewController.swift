@@ -13,6 +13,7 @@ protocol MainViewDelegate: AnyObject {
 
 class MainViewController: UIViewController {
     private var person: Person?
+    private var addition: Addition?
 
     var delegate: MainViewControllerDelegate?
 
@@ -68,6 +69,36 @@ extension MainViewController {
 // MARK: - Delegation
 extension MainViewController: MainViewDelegate {
     func additionPressed() {
+        let alert = UIAlertController(
+            title: "Addition of two numbers",
+            message: "Fill in two number an tap OK to compute",
+            preferredStyle: .alert
+        )
+        alert.addTextField {
+            $0.placeholder = "Type the first number"
+        }
+        alert.addTextField {
+            $0.placeholder = "Type the second number"
+        }
+        let action = UIAlertAction(title: "Addition of two numbers", style: .default) { _ in
+            var firstNumber: Float = 0
+            var secondNumber: Float = 0
+            if let unwrappedText = alert.textFields?.first?.text,
+               let unwrappedfirstNumber = Float(unwrappedText) {
+                firstNumber = unwrappedfirstNumber
+            }
+            if let unwrappedText = alert.textFields?.last?.text,
+                let unwrappedSecondNumber = Float(unwrappedText) {
+                secondNumber = unwrappedSecondNumber
+            }
+
+            self.addition = Addition(firstNumber: firstNumber, secondNumber: secondNumber)
+            let result = self.addition?.calculate() ?? 0
+            self.delegate?.showTheResultOfAddition(result: result)
+        }
+
+        alert.addAction(action)
+        present(alert, animated: true)
     }
 }
 import SwiftUI

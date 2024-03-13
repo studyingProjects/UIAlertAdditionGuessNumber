@@ -117,6 +117,11 @@ extension MainView: MainViewControllerDelegate {
     func updateFullName(with fullNameGreeting: String) {
         fullNameLabel.text = fullNameGreeting
     }
+
     func showTheResultOfAddition(result: Float) {
+        let alert = UIAlertController(title: "The result of addition", message: String(format: "%.0f", result), preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        self.window?.rootViewController?.present(alert, animated: true)
     }
 }
