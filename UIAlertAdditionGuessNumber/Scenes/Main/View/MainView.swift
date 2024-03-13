@@ -9,12 +9,15 @@ import UIKit
 
 protocol MainViewControllerDelegate: AnyObject {
     func updateFullName(with fullNameGreeting: String)
+    func showTheResultOfAddition(result: Float)
 }
 
 class MainView: UIView {
     private lazy var fullNameLabel: UILabel = getfullNameLabel()
     private lazy var additionButton: UIButton = getAdditionButton()
     private lazy var guessButton: UIButton = getGuessButton()
+
+    var delegate: MainViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +55,8 @@ class MainView: UIView {
         button.layer.cornerRadius = CommonSize.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
+        button.addTarget(self, action: #selector(additionPressed), for: .touchUpInside)
+
         return button
     }
 
@@ -64,6 +69,11 @@ class MainView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
+    }
+    // MARK: - Actions
+    @objc
+    func additionPressed() {
+        delegate?.additionPressed()
     }
 }
 // MARK: - Constraints
@@ -103,7 +113,10 @@ private extension MainView {
 }
 // MARK: - Delegation
 extension MainView: MainViewControllerDelegate {
+    // Updating logic
     func updateFullName(with fullNameGreeting: String) {
         fullNameLabel.text = fullNameGreeting
+    }
+    func showTheResultOfAddition(result: Float) {
     }
 }

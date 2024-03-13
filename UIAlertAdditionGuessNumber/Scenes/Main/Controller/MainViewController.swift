@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainViewDelegate: AnyObject {
+    func additionPressed()
+}
+
 class MainViewController: UIViewController {
     private var person: Person?
 
@@ -16,6 +20,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         let mainView = MainView()
+        mainView.delegate = self
         view = mainView
         delegate = mainView
     }
@@ -25,7 +30,9 @@ class MainViewController: UIViewController {
 
         askForFullName()
     }
-
+}
+// MARK: - Alerts
+extension MainViewController {
     private func askForFullName() {
         let alert = UIAlertController(
             title: "What is your name?",
@@ -58,7 +65,11 @@ class MainViewController: UIViewController {
         present(alert, animated: true)
     }
 }
-
+// MARK: - Delegation
+extension MainViewController: MainViewDelegate {
+    func additionPressed() {
+    }
+}
 import SwiftUI
 struct ViewControllerProvider: PreviewProvider {
     static var previews: some View {
