@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewControllerDelegate: AnyObject {
-    func updateFullName(with fullName: String)
+    func updateFullName(with fullNameGreeting: String)
 }
 
 class MainView: UIView {
@@ -103,7 +103,7 @@ private extension MainView {
 }
 // MARK: - Delegation
 extension MainView: MainViewControllerDelegate {
-    func updateFullName(with fullName: String) {
-        fullNameLabel.text = "Hey, \(fullName)!"
+    func updateFullName(with fullNameGreeting: String) {
+        fullNameLabel.text = fullNameGreeting
     }
 }

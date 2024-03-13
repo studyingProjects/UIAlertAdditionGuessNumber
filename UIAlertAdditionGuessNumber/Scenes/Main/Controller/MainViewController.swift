@@ -8,6 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    private var person: Person?
+
     var delegate: MainViewControllerDelegate?
 
     override func viewDidLoad() {
@@ -39,15 +41,17 @@ class MainViewController: UIViewController {
         }
 
         let defaultAction = UIAlertAction(title: "OK", style: .default) { _ in
-            var fullName: String = ""
-            if let name = alert.textFields?.first?.text {
-                fullName += "\(name)"
+            var name: String = ""
+            var surname: String = ""
+            if let unwrappedName = alert.textFields?.first?.text {
+                name = unwrappedName.trimmingCharacters(in: .whitespaces)
             }
-            if let surName = alert.textFields?.last?.text {
-                fullName += " \(surName)"
+            if let unwrappedSurname = alert.textFields?.last?.text {
+                surname = unwrappedSurname.trimmingCharacters(in: .whitespaces)
             }
-            fullName = fullName.trimmingCharacters(in: .whitespaces)
-            self.delegate?.updateFullName(with: fullName)
+            self.person = Person(name: name, surname: surname)
+            let fullNameGreeting: String = self.person?.getFullNameGreeting() ?? ""
+            self.delegate?.updateFullName(with: fullNameGreeting)
         }
 
         alert.addAction(defaultAction)
