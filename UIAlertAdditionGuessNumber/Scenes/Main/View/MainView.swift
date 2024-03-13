@@ -8,7 +8,9 @@
 import UIKit
 
 class MainView: UIView {
+    private lazy var fullNameLabel: UILabel = getfullNameLabel()
     private lazy var additionButton: UIButton = getAdditionButton()
+    private lazy var guessButton: UIButton = getGuessButton()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +21,23 @@ class MainView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    // MARK: - SetupView
+    private func setupView() {
+        self.backgroundColor = .systemCyan
+        addSubview(fullNameLabel)
+        addSubview(additionButton)
+        addSubview(guessButton)
+    }
+
+    private func getfullNameLabel() -> UILabel {
+        let label = UILabel()
+        label.textColor = .label
+        label.font = .systemFont(ofSize: LabelSize.Medium.fontSize, weight: LabelSize.Medium.fontWeight)
+        label.text = "Hey,"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
 
     private func getAdditionButton() -> UIButton {
@@ -32,20 +51,50 @@ class MainView: UIView {
         return button
     }
 
-    private func setupView() {
-        self.backgroundColor = .systemCyan
-        addSubview(additionButton)
-    }
+    private func getGuessButton() -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setTitle("Guess the number", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = CommonSize.cornerRadius
+        button.translatesAutoresizingMaskIntoConstraints = false
 
+        return button
+    }
+}
+// MARK: - Constraints
+private extension MainView {
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            additionButton.topAnchor.constraint(
+            fullNameLabel.topAnchor.constraint(
                 equalTo: self.safeAreaLayoutGuide.topAnchor,
-                constant: CommonSize.Padding.medium
+                constant: CommonSize.Padding.large
+            ),
+            fullNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            fullNameLabel.leadingAnchor.constraint(
+                equalTo: self.leadingAnchor,
+                constant: CommonSize.Padding.large
+            ),
+            fullNameLabel.trailingAnchor.constraint(
+                equalTo: self.trailingAnchor,
+                constant: CommonSize.Padding.large
+            ),
+
+            additionButton.topAnchor.constraint(
+                equalTo: fullNameLabel.bottomAnchor,
+                constant: CommonSize.Padding.large
             ),
             additionButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             additionButton.widthAnchor.constraint(equalToConstant: ButtonSize.Large.width),
-            additionButton.heightAnchor.constraint(equalToConstant: ButtonSize.Large.height)
+            additionButton.heightAnchor.constraint(equalToConstant: ButtonSize.Large.height),
+
+            guessButton.topAnchor.constraint(
+                equalTo: additionButton.bottomAnchor,
+                constant: CommonSize.Padding.medium
+            ),
+            guessButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            guessButton.widthAnchor.constraint(equalToConstant: ButtonSize.Large.width),
+            guessButton.heightAnchor.constraint(equalToConstant: ButtonSize.Large.height)
         ])
     }
 }

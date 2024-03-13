@@ -14,6 +14,16 @@ class MainViewController: UIViewController {
 
         view = MainView()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        askForFullName()
+    }
+
+    private func askForFullName() {
+        
+    }
 }
 
 import SwiftUI
